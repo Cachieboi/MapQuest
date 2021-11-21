@@ -26,15 +26,27 @@ while True:
         print("Kilometers: " + json_kilometers)
         if float(json_kilometers) <= 5:
             print("Your Destination is in Walking Distance")
+            print("=============================================")
+            for each in json_data["route"]["legs"][0]["maneuvers"]:
+                print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
+            print("=============================================\n")
         elif float(5 < float(json_kilometers) <= 15):
             print("Your Destination is in Biking Distance")
-        elif(float(json_kilometers) > 15):
+            print("=============================================")
+            for each in json_data["route"]["legs"][0]["maneuvers"]:
+                print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
+            print("=============================================\n")
+        elif(float(json_kilometers) > 15 and float(json_kilometers) <= 30  ):
             print("Your Destination is Far. Use a Car")
             print("Fuel Used (Ltr): " + str("{:.2f}".format((json_data["route"]["fuelUsed"])*3.78)))
-        print("=============================================")
-        for each in json_data["route"]["legs"][0]["maneuvers"]:
-            print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
-        print("=============================================\n")
+            print("=============================================")
+            for each in json_data["route"]["legs"][0]["maneuvers"]:
+                print((each["narrative"]) + " (" + str("{:.2f}".format((each["distance"])*1.61) + " km)"))
+            print("=============================================\n")
+        elif(float(json_kilometers) > 30):
+            print("Your Destination is Out of our Scope, We apologize for the limitation of our Applcation")
+            print("We hope you had a good time using our application. Thank you.")
+        
     elif json_status == 402:
         print("**********************************************")
         print("Status Code: " + str(json_status) + "; Invalid user inputs for one or both locations.")
